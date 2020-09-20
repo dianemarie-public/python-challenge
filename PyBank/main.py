@@ -10,28 +10,22 @@
 
 # In addition, your final script should both print the analysis to the terminal and export a text file with the results.
 
-
+# Import dependencies for creating file paths across operating systems and reading csv files
 import os
 import csv
 
-csvpath = os.path.join('Resources', 'budget_data.csv')
+# Set the file path using the os module (imported above), and print
+csvfile = os.path.join('Resources', 'budget_data.csv')
+print(f"CSV File: {csvfile}")
 
-file_name = 'budget_data.csv'
-
-with open(csvpath) as csvfile:
-  
+# Read the file using the csv module, (imported above) Ref: read_csv.py
+with open(csvfile) as csvfile:
+    # Specifies delimiter and variable that holds contents, and print
     csvreader = csv.reader(csvfile, delimiter=',')
-
+    print(f"CSV Reader: {csvreader}")
+    # Read the header row first, and print
     csvheader = next(csvreader)
-
-    total = 0
-
-    budget_amt = [[row[1], int(row[1])] for row in csvreader if row]
-
-    total += (budget_amt[1])
-
-    print(f"Data file: {file_name}")
-
-    for csvrows in budget_amt:
-        print(budget_amt)
-        print(total)
+    print(f"CSV Header: {csvheader}")
+    # Read each row after the header row, and print
+    for csvrows in csvreader:
+        print(csvrows)    
