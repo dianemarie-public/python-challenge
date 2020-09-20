@@ -18,17 +18,29 @@ import csv
 csvfile = os.path.join('Resources', 'budget_data.csv')
 print(f"CSV File: {csvfile}")
 
+output_path = os.path.join("Analysis", "output.txt")
+print(f"Analysis File: {output_path}")
+
 # Open and read csv file using the csv module, (imported above) Ref: examples read_csv.py, cereal_solved.py
 with open(csvfile) as csvfile:
     # Using DictReader from the csv module, creates an object that maps each row to a dictionary where keys are given fieldnames, defaulted to the first header row (ref: Python Documentation for csv module here https://docs.python.org/3/library/csv.html#module-contents)
-    csvreader = csv.DictReader(csvfile)
-    # print(f"CSV Reader: {csvreader}")
-    
+    dict_reader = csv.DictReader(csvfile)    
     # Prints field names (i.e. header row)
-    print(f"Field Names: {csvreader.fieldnames}")
+    print(f"Field Names: {dict_reader.fieldnames}")
     # Read and print each row as dictionary
-    for rows in csvreader:
-        next(csvreader)
-        # print(rows)
+    for rows in dict_reader:
+        next(dict_reader)
+        print(rows)
     # Print the number of rows, minus the header row
-    print(f"Number of Budget Months: {csvreader.line_num-1}")  
+    budget_months = dict_reader.line_num - 1
+    print(f"Number of Budget Months: {budget_months}")
+with open(output_path, "w", newline='') as csvfile:
+    outputwriter = csv.writer(csvfile, delimiter=' ', quotechar=' ', quoting=csv.QUOTE_MINIMAL)
+    outputwriter.writerow(['Number of budget months: '])
+    outputwriter.writerow(['Net profit/losses: '])
+    outputwriter.writerow(['Average profit/losses: '])
+    outputwriter.writerow(['Greatest increase profit/losses: '])
+    outputwriter.writerow(['Greatest decrease profit/losses: '])
+    outputwriter.writerow(['Net profit/losses: '])
+
+    ############ WORKS ABOVE THIS LINE ########
