@@ -10,7 +10,7 @@
 
 # In addition, your final script should both print the analysis to the terminal and export a text file with the results.
 
-# Import dependencies for creating file paths across operating systems and reading csv files
+# Import dependencies for creating file paths across operating systems and reading csv files Ref: imports.py
 import os
 import csv
 
@@ -18,14 +18,11 @@ import csv
 csvfile = os.path.join('Resources', 'budget_data.csv')
 print(f"CSV File: {csvfile}")
 
-# Read the file using the csv module, (imported above) Ref: read_csv.py
+# Open and read csv file using the csv module, (imported above) Ref: examples read_csv.py, cereal_solved.py
 with open(csvfile) as csvfile:
-    # Specifies delimiter and variable that holds contents, and print
-    csvreader = csv.reader(csvfile, delimiter=',')
+    # Using DictReader from the csv module, creates an object that maps each row to a dictionary where keys are given fieldnames, defaulted to the first header row (ref: Python Documentation for csv module here https://docs.python.org/3/library/csv.html#module-contents)
+    csvreader = csv.DictReader(csvfile)
     print(f"CSV Reader: {csvreader}")
-    # Read the header row first, and print
-    csvheader = next(csvreader)
-    print(f"CSV Header: {csvheader}")
-    # Read each row after the header row, and print
+    # Read each row, and print
     for csvrows in csvreader:
         print(csvrows)    
