@@ -22,7 +22,13 @@ print(f"CSV File: {csvfile}")
 with open(csvfile) as csvfile:
     # Using DictReader from the csv module, creates an object that maps each row to a dictionary where keys are given fieldnames, defaulted to the first header row (ref: Python Documentation for csv module here https://docs.python.org/3/library/csv.html#module-contents)
     csvreader = csv.DictReader(csvfile)
-    print(f"CSV Reader: {csvreader}")
-    # Read each row, and print
-    for csvrows in csvreader:
-        print(csvrows)    
+    # print(f"CSV Reader: {csvreader}")
+    
+    # Prints field names (i.e. header row)
+    print(f"Field Names: {csvreader.fieldnames}")
+    # Read and print each row as dictionary
+    for rows in csvreader:
+        next(csvreader)
+        # print(rows)
+    # Print the number of rows, minus the header row
+    print(f"Number of Budget Months: {csvreader.line_num-1}")  
