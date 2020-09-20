@@ -1,5 +1,5 @@
- Number  of  budget  months:   
- Net  profit/losses:   
+ Number  of  budget  months:    86
+ Net  profit/losses:    0
  Average  profit/losses:   
  Greatest  increase  profit/losses:   
  Greatest  decrease  profit/losses:   
