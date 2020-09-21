@@ -1,6 +1,6 @@
- Number  of  budget  months:    86
- Net  profit/losses:    0
- Average  profit/losses:   
- Greatest  increase  profit/losses:   
- Greatest  decrease  profit/losses:   
- Net  profit/losses:   
+ Budget  Analysis  of  budget_data.csv
+ Number  of  Months:  86
+ Net  Profit/Loss:  $38,382,578.00
+ Average  Profit/Losses:  $446,309.05
+ Greatest  Increase  Profit/Loss:  $1,170,593.00
+ Greatest  Decrease  Profit/Loss:  $-1,196,225.00
