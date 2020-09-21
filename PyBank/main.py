@@ -8,45 +8,44 @@
     # The greatest increase in profits (date and amount) over the entire period
     # The greatest decrease in losses (date and amount) over the entire period
 
-# In addition, your final script should both print the analysis to the terminal and export a text file with the results.
+import os 
+import csv 
+# Imports the dependencies to: create file paths across operating systems (os) and read from csv files (csv)
 
-import os # Imports the dependency for creating file paths across operating systems
-import csv # Imports the dependency for reading csv files Ref: imports.py
+csv_path = os.path.join('Resources', 'budget_data.csv') 
+text_path = os.path.join("Analysis", "output.txt") 
+# Set the csv (read from) and text (write to) file paths using the os module (imported above)
 
-budget_file = os.path.join('Resources', 'budget_data.csv') # Set the file path using the os module (imported above)
-output_path = os.path.join("Analysis", "output.txt")
+# Creates variables, and set initial vale to zero (integers)
+num_months = 0
+net_profit_loss = 0
+avg_profit_loss = 0
+max_profit = 0
+max_loss = 0
 
-with open(budget_file, 'r') as csvfile: # Opens and reads the file using the csv module (imported above) Ref: examples read_csv.py, cereal_solved.py
-
-    budget_reader = csv.DictReader(csvfile) # Initiates DictReader from the csv module (ref: Python Documentation here https://docs.python.org/3/library/csv.html#module-contents)
-    next(budget_reader) # Skips over header row
+with open(csv_path, 'r') as csvfile: # Opens and reads the file using the csv module
+    csv_reader = csv.DictReader(csvfile) # Initiates DictReader from csv module
+    print(f"CSV Reader: {csv_reader}")
     
-    net_budget = 0
-    avg_budget = 0
-    max_profit = 0
-    max_loss = 0
-    
-    budget_month = {} # Dictionary name for 'Date'
-    profit_loss = {} # Dictionary name for 'Profit/Losses'
-    
-    for row in budget_reader: # Reads each row of the dictionary
-       budget_line = row['Profit/Losses']       
+    for row in csv_reader: # Reads each row of the dictionary
+       budget_row = int(row["Profit/Losses"]) # Converts content of column to integer, example here: https://courses.cs.washington.edu/courses/cse140/13wi/csv-parsing.html  
+       
        if budget_line in profit_loss:           
-           budget_line = [int(i) for i in row[1:]] # Converts dictionary list of values to integers Ref: https://stackoverflow.com/questions/38640365/how-do-i-convert-dictionary-list-values-to-integers      
-                 
+           budget_line = [int(i) for i in row[1:]] 
     budget_months = budget_reader.line_num - 1 # Creates variable for counting the number of lines, minus the header row  
 
-print(f"Budget File: {budget_file}") # Prints read file name
-print(f"Analysis File: {output_path}") # Prints write file name
-print(f"Number of Budget Months: {budget_months}") # Prints the variable value
+# Prints analysis to terminal
+print(f"Budget Analysis")
+print(f"Number of Budget Months: {budget_months}") 
 print(f"Last Budget Line Converted to Integers: {budget_line}")
-print(f"Net Profit/Losses: {net_budget}") # Prints the variable value
-print(f"Average Profit/Losses: {avg_budget}") # Prints the variable value
-print(f"Greatest Increase Profit/Losses: {max_profit}") # Prints the variable value
-print(f"Greatest Decrease Profit/Losses: {max_loss}") # Prints the variable value
-print(f"Field Names: {budget_reader.fieldnames}") # Prints field names (i.e. header row)
+print(f"Net Profit/Losses: {net_budget}") 
+print(f"Average Profit/Losses: {avg_budget}") 
+print(f"Greatest Increase Profit/Losses: {max_profit}") 
+print(f"Greatest Decrease Profit/Losses: {max_loss}") 
+print(f"Field Names: {budget_reader.fieldnames}") 
 
-with open(output_path, "w", newline='') as csvfile: # Opens output file, and writes to it (ref: Python Documentation here https://docs.python.org/3/library/csv.html)
+# Prints analysis to the output.txt file
+with open(output_path, "w", newline='') as csvfile: # Opens output file, and writes to it (ref: Python Documentation here https://docs.python.org/3/library/csv.html#writer-objects
     outputwriter = csv.writer(csvfile, delimiter=' ', quotechar=' ', quoting=csv.QUOTE_MINIMAL)
     outputwriter.writerow(['Number of budget months: ', budget_months]) # WORKS
     outputwriter.writerow(['Net profit/losses: ', net_budget])
