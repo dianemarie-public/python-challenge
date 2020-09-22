@@ -1,7 +1,7 @@
  Election  Results 
- Total  Votes  Cast:    3,521,001
- Khan  Votes:    2,218,231 63%
- Correy  Votes:    704,200 20%
- Li  Votes:    492,940 14%
- O'Tooley  Votes:    105,630 3%
- Election  Winner:    Khan
+ Total  Votes  Cast  ==  3,521,001 == 100%
+ Khan  Votes  =========  2,218,231 == 63%
+ Correy  Votes  =======  704,200 ==== 20%
+ Li  Votes  ===========  492,940 ==== 14%
+ O'Tooley  Votes  =====  105,630 ==== 3%
+ Election  Winner  ====  Khan
