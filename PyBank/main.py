@@ -19,19 +19,15 @@ avg_profit_loss = 0 # The average of the changes in "Profit/Losses" over the ent
 max_profit = 0 # The greatest increase in profits (date and amount) over the entire period
 max_loss = 0 # The greatest decrease in losses (date and amount) over the entire period
 
-# Opens and reads the file using the csv module
-with open(csv_path, 'r') as csvfile:
+with open(csv_path, 'r') as csvfile: # Opens and reads the file using the csv module
     # Initiates DictReader from csv module, and the ability to reference dictionary keys (i.e. "Profit/Losses")
     csv_reader = csv.DictReader(csvfile)
     # Reads each row of the dictionary
-    for row in csv_reader:
-        # Converts content of column to integer, example here: https://courses.cs.washington.edu/courses/cse140/13wi/csv-parsing.html
-        budget_row = int(row["Profit/Losses"]) 
-        net_profit_loss += int(row["Profit/Losses"])
-        # If statement to compare each row until the largest numeric value is found, example for largest value found here: https://courses.cs.washington.edu/courses/cse140/13wi/csv-parsing.html
+    for row in csv_reader:        
+        budget_row = int(row["Profit/Losses"]) # Converts content of column to integer, example here: https://courses.cs.washington.edu/courses/cse140/13wi/csv-parsing.html
+        net_profit_loss += int(row["Profit/Losses"]) # If statement to compare each row until the largest numeric value is found, example for largest value found here: https://courses.cs.washington.edu/courses/cse140/13wi/csv-parsing.html
         if max_profit == 0 or max_profit < budget_row:
-            max_profit = int(budget_row)
-        # If statement to compare each row until the smallest numeric value is found, example (above) reversed for smallest value
+            max_profit = int(budget_row)  # If statement to compare each row until the smallest numeric value is found, example (above) reversed for smallest value
         if max_loss == 0 or max_loss > budget_row:
             max_loss = int(budget_row)   
     

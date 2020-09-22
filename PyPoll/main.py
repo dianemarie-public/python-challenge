@@ -5,15 +5,13 @@
 
 import os
 import csv
-import collections 
 
 csv_path = os.path.join('Resources', 'election_data.csv')
 text_path = os.path.join("Analysis", "election_results.txt")
 
 csv_file_name = 'election_data.csv'
-txt_file_name = 'election_reslts.txt'
+txt_file_name = 'election_results.txt'
 
-voters = collections.Counter()
 candidate1_votes = 0
 candidate2_votes = 0
 candidate3_votes = 0
@@ -77,7 +75,6 @@ with open(csv_path, 'r') as csvfile:
 
 with open (text_path, "w", newline='') as csvfile:
     text_writer = csv.writer(csvfile, delimiter=' ', quotechar=' ', quoting=csv.QUOTE_MINIMAL)
-
     # Prints to election_results.txt
     text_writer.writerow(["Election Results"])
     text_writer.writerow(["Total Votes Cast ==",total_votes,"==",total_pct])
