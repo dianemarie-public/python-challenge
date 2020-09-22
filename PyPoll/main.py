@@ -27,9 +27,7 @@ candidate2_votes = 0
 candidate3_votes = 0
 candidate4_votes = 0
 total_votes = 0
-pct_candidate_votes = 0
-num_candidate_votes =0
-win_most_votes = 0
+winner = 'none'
 
 with open(csv_path, 'r') as csvfile:
     csv_reader = csv.DictReader(csvfile)
@@ -45,6 +43,18 @@ with open(csv_path, 'r') as csvfile:
 
         if votes['Candidate'] == "O'Tooley": # Using DictReader the key is the column name, then searches for 'word'
             candidate4_votes += 1 # Totals the number of times 'word' is found in column 'Candidate
+        
+        if candidate1_votes > candidate2_votes and candidate1_votes > candidate3_votes and candidate1_votes > candidate4_votes:
+            winner = "Khan"
+        
+        if candidate2_votes > candidate1_votes and candidate2_votes > candidate3_votes and candidate2_votes > candidate4_votes:
+            winner = "Correy"
+
+        if candidate3_votes > candidate1_votes and candidate3_votes > candidate2_votes and candidate3_votes > candidate4_votes:
+            winner = "Li"
+
+        if candidate4_votes > candidate1_votes and candidate4_votes > candidate2_votes and candidate4_votes > candidate3_votes:
+            winner = "O'Tooley"
 
     total_votes = candidate1_votes + candidate2_votes + candidate3_votes + candidate4_votes
     candidate1_pct = candidate1_votes/total_votes*100
@@ -61,10 +71,8 @@ with open(csv_path, 'r') as csvfile:
     candidate1_pct = "{:,.0f}%".format(candidate1_pct)
     candidate2_pct = "{:,.0f}%".format(candidate2_pct)
     candidate3_pct = "{:,.0f}%".format(candidate3_pct)
-    candidate4_pct = "{:,.0f}%".format(candidate4_pct)
+    candidate4_pct = "{:,.0f}%".format(candidate4_pct)    
     
-    win_most_votes = "{:,.0f}".format(win_most_votes)
-
     # Prints to terminal
     print(f"Election Results")
     print(f"Total Votes Cast: {total_votes}")
@@ -72,15 +80,17 @@ with open(csv_path, 'r') as csvfile:
     print(f"Votes for Correy: {candidate2_votes}, {candidate2_pct}")
     print(f"Votes for Li: {candidate3_votes}, {candidate3_pct}")
     print(f"Votes for O'Tooley: {candidate4_votes}, {candidate4_pct}")
-    print(f"Candidate With Most Votes: {win_most_votes}")
+    print(f"Candidate With Most Votes: {winner}")
 
 with open (text_path, "w", newline='') as csvfile:
     text_writer = csv.writer(csvfile, delimiter=' ', quotechar=' ', quoting=csv.QUOTE_MINIMAL)
 
     # Prints to election_results.txt
-    text_writer.writerow(['Election Results'])
-    text_writer.writerow(['Total Votes Cast: ',total_votes])
+    text_writer.writerow(["Election Results"])
+    text_writer.writerow(["Total Votes Cast: ",total_votes])
     #text_writer.writerow(['Candidates With Votes: ',candidate_votes])
-    text_writer.writerow(['Candidate Vote Percent: ',pct_candidate_votes])
-    text_writer.writerow(['Candidate Vote Total: ',num_candidate_votes])
-    text_writer.writerow(['Candidate With Most Votes: ',win_most_votes])
+    text_writer.writerow(["Khan Votes: ",candidate1_votes,candidate1_pct])
+    text_writer.writerow(["Correy Votes: ",candidate2_votes,candidate2_pct])
+    text_writer.writerow(["Li Votes: ",candidate3_votes,candidate3_pct])
+    text_writer.writerow(["O'Tooley Votes: ",candidate4_votes,candidate4_pct])
+    text_writer.writerow(["Election Winner: ",winner])
