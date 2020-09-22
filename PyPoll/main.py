@@ -16,9 +16,10 @@ import os
 import csv
 
 csv_path = os.path.join('Resources', 'election_data.csv')
-text_path = os.path.join('Analysis', 'output.txt')
+text_path = os.path.join("Analysis", "election_results.txt")
 
-file_name = 'election_data.csv'
+csv_file_name = 'election_data.csv'
+txt_file_name = 'election_reslts.txt'
 
 election_dictionary = {}
 
@@ -33,5 +34,31 @@ with open(csv_path, 'r') as csvfile:
     for row in csv_reader:
         voter_id = int(row["Voter ID"])
         
-total_votes_cast = csv_reader.line_num - 1
-print(total_votes_cast)
+    total_votes_cast = csv_reader.line_num - 1
+
+    # Formats variables before printing
+    total_votes_cast = "{:,.0f}".format(total_votes_cast)
+    candidate_votes = "{:,.0f}".format(candidate_votes)
+    pct_candidate_votes = "{:,.0f}%".format(pct_candidate_votes)
+    num_candidate_votes = "{:,.0f}".format(num_candidate_votes)
+    winner_most_votes = "{:,.0f}".format(winner_most_votes)
+
+    # Prints to terminal
+    print(f"Election Results")
+    print(f"Total Votes Cast: {total_votes_cast}")
+    print(f"Candidates With Votes: {candidate_votes}")
+    print(f"Candidate Vote Percent: {pct_candidate_votes}")
+    print(f"Candidate Vote Total: {num_candidate_votes}")
+    print(f"Candidate With Most Votes: {winner_most_votes}")
+
+with open (text_path, "w", newline='') as csvfile:
+    text_writer = csv.writer(csvfile, delimiter=' ', quotechar=' ', quoting=csv.QUOTE_MINIMAL)
+
+    # Prints to election_results.txt
+    text_writer.writerow(['Election Results'])
+    text_writer.writerow(['Total Votes Cast: ',total_votes_cast])
+    text_writer.writerow(['Candidates With Votes: ',candidate_votes])
+    text_writer.writerow(['Candidate Vote Percent: ',pct_candidate_votes])
+    text_writer.writerow(['Candidate Vote Total: ',num_candidate_votes])
+    text_writer.writerow(['Candidate With Most Votes: ',winner_most_votes])
+
