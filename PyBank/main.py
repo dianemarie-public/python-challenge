@@ -8,7 +8,7 @@ import csv
 
 # Set the csv (read from) and text (write to) file paths using the os module (imported above)
 csv_path = os.path.join('Resources', 'budget_data.csv') 
-text_path = os.path.join("Analysis", "output.txt") 
+text_path = os.path.join("Analysis", "budget_analysis.txt") 
 
 file_name = 'budget_data.csv'
 
