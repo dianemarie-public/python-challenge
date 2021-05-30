@@ -7,17 +7,22 @@ import os
 import csv 
 
 # Set the csv (read from) and text (write to) file paths using the os module (imported above)
-csv_path = os.path.join('Resources', 'budget_data.csv') 
-text_path = os.path.join("Analysis", "budget_analysis.txt") 
+csv_path = os.path.join('Resources/', 'budget_data.csv') 
+text_path = os.path.join('Analysis/", "budget_analysis.txt') 
 
 file_name = 'budget_data.csv'
 
 # Creates variables, and set initial values to zero (as integers), important to set variables before open/read or open/write
-num_months = 0 # The total number of months included in the dataset
-net_profit_loss = 0 # The net total amount of "Profit/Losses" over the entire period
-avg_profit_loss = 0 # The average of the changes in "Profit/Losses" over the entire period
-max_profit = 0 # The greatest increase in profits (date and amount) over the entire period
-max_loss = 0 # The greatest decrease in losses (date and amount) over the entire period
+num_months = 0 
+# The total number of months included in the dataset
+net_profit_loss = 0 
+# The net total amount of "Profit/Losses" over the entire period
+avg_profit_loss = 0 
+# The average of the changes in "Profit/Losses" over the entire period
+max_profit = 0 
+# The greatest increase in profits (date and amount) over the entire period
+max_loss = 0 
+# The greatest decrease in losses (date and amount) over the entire period
 
 with open(csv_path, 'r') as csvfile: # Opens and reads the file using the csv module
     # Initiates DictReader from csv module, and the ability to reference dictionary keys (i.e. "Profit/Losses")
